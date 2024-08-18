@@ -42,6 +42,7 @@ body, html {
     font-size: 18px;
     cursor: pointer;
 }
+
 @media (max-width: 600px) {
     #gameCanvas {
         width: 100%;
