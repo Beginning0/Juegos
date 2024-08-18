@@ -1,6 +1,9 @@
 function isMobileDevice() {
     return /Mobi|Android/i.test(navigator.userAgent);
 }
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+});
 
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
@@ -28,21 +31,26 @@ function setupMobileControls() {
     document.getElementById('controls').style.display = 'flex';
 
     // Manejar eventos táctiles para mover la nave y pausar
-    document.getElementById('left-btn').addEventListener('touchstart', () => {
-        keys['ArrowLeft'] = true;
-    });
+document.getElementById('left-btn').addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    keys['ArrowLeft'] = true;
+});
 
-    document.getElementById('left-btn').addEventListener('touchend', () => {
-        keys['ArrowLeft'] = false;
-    });
+document.getElementById('left-btn').addEventListener('touchend', function(e) {
+    e.preventDefault();
+    keys['ArrowLeft'] = false;
+});
 
-    document.getElementById('right-btn').addEventListener('touchstart', () => {
-        keys['ArrowRight'] = true;
-    });
+document.getElementById('right-btn').addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    keys['ArrowRight'] = true;
+});
 
-    document.getElementById('right-btn').addEventListener('touchend', () => {
-        keys['ArrowRight'] = false;
-    });
+document.getElementById('right-btn').addEventListener('touchend', function(e) {
+    e.preventDefault();
+    keys['ArrowRight'] = false;
+});
+
 
     document.getElementById('pause-btn').addEventListener('touchstart', togglePause);
 }
