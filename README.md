@@ -31,9 +31,10 @@ Si deseas ejecutar el juego localmente, sigue estos pasos:
 1. Clona este repositorio:
    ```bash
    git clone https://github.com/beginning0/Juegos.git
-2.Navega a la carpeta del juego:
-  cd Juegos/Juegos-Colisionador
-3.Abre el archivo index.html en tu navegador preferido.
+2. Navega a la carpeta del juego:
+   ```bash
+   cd Juegos/Juegos-Colisionador
+3. Abre el archivo index.html en tu navegador preferido.
 
 ## Contribuciones
 
