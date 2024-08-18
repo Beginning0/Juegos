@@ -1,4 +1,4 @@
-# Galaga Clone - Juegos Colisionador
+# Galaga - Juegos Colisionador
 
 Este es un clon básico del clásico juego de arcade **Galaga**, desarrollado utilizando HTML, CSS y JavaScript. El juego presenta una mecánica sencilla de disparo en la que el jugador controla una nave espacial, enfrentándose a oleadas de enemigos descendentes.
 
