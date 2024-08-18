@@ -1,7 +1,12 @@
+function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+}
+
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 600; 
+
 
 let playerName = '';
 let score = 0;
@@ -10,23 +15,62 @@ let player;
 let enemies = [];
 let isPaused = false;
 
-document.getElementById('left-btn').addEventListener('touchstart', () => {
-    keys['ArrowLeft'] = true;
+document.addEventListener('DOMContentLoaded', () => {
+    if (isMobileDevice()) {
+        setupMobileControls();
+    } else {
+        setupDesktopControls();
+    }
 });
 
-document.getElementById('left-btn').addEventListener('touchend', () => {
-    keys['ArrowLeft'] = false;
-});
+function setupMobileControls() {
+    // Mostrar botones táctiles
+    document.getElementById('controls').style.display = 'flex';
 
-document.getElementById('right-btn').addEventListener('touchstart', () => {
-    keys['ArrowRight'] = true;
-});
+    // Manejar eventos táctiles para mover la nave y pausar
+    document.getElementById('left-btn').addEventListener('touchstart', () => {
+        keys['ArrowLeft'] = true;
+    });
 
-document.getElementById('right-btn').addEventListener('touchend', () => {
-    keys['ArrowRight'] = false;
-});
+    document.getElementById('left-btn').addEventListener('touchend', () => {
+        keys['ArrowLeft'] = false;
+    });
 
-document.getElementById('pause-btn').addEventListener('touchstart', togglePause);
+    document.getElementById('right-btn').addEventListener('touchstart', () => {
+        keys['ArrowRight'] = true;
+    });
+
+    document.getElementById('right-btn').addEventListener('touchend', () => {
+        keys['ArrowRight'] = false;
+    });
+
+    document.getElementById('pause-btn').addEventListener('touchstart', togglePause);
+}
+
+function setupDesktopControls() {
+    // Ocultar los controles táctiles si están visibles
+    document.getElementById('controls').style.display = 'none';
+
+    // Manejar controles de teclado
+    window.addEventListener('keydown', function (e) {
+        if (e.key === 'p' || e.key === 'P') {
+            togglePause();
+        }
+
+        if (e.key === ' ') {
+            if (gameOver) {
+                restartGame();
+            }
+        }
+
+        keys[e.key] = true;
+    });
+
+    window.addEventListener('keyup', function (e) {
+        keys[e.key] = false;
+    });
+}
+
 
 window.addEventListener('keydown', function (e) {
     if (e.key === 'p' || e.key === 'P') {
