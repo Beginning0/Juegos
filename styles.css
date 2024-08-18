@@ -18,7 +18,10 @@ body, html {
 #gameCanvas {
     background: #111;
     display: block;
+    width: 800px;
+    height: 600px;
 }
+
 
 #start-screen, #game-over-screen {
     position: absolute;
