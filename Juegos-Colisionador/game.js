@@ -10,6 +10,23 @@ let player;
 let enemies = [];
 let isPaused = false;
 
+document.getElementById('left-btn').addEventListener('touchstart', () => {
+    keys['ArrowLeft'] = true;
+});
+
+document.getElementById('left-btn').addEventListener('touchend', () => {
+    keys['ArrowLeft'] = false;
+});
+
+document.getElementById('right-btn').addEventListener('touchstart', () => {
+    keys['ArrowRight'] = true;
+});
+
+document.getElementById('right-btn').addEventListener('touchend', () => {
+    keys['ArrowRight'] = false;
+});
+
+document.getElementById('pause-btn').addEventListener('touchstart', togglePause);
 
 window.addEventListener('keydown', function (e) {
     if (e.key === 'p' || e.key === 'P') {
