@@ -65,9 +65,7 @@ document.getElementById('start-button').addEventListener('click', () => {
 // });
 
 document.getElementById('menu-button').addEventListener('click', () => {
-    document.getElementById('game-over-screen').style.display = 'none';
-    document.getElementById('start-screen').style.display = 'flex';
-    startGame();
+    location.reload();  // Recargar la página para volver al menú principal
 });
 
 function startGame() {
