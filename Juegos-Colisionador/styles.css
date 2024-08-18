@@ -52,7 +52,7 @@ body, html {
     #controls {
         display: flex;
         justify-content: center;
-        gap: 10px;
+        gap: 15px;
     }
 
     #controls button {
