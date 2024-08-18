@@ -65,8 +65,9 @@ document.getElementById('start-button').addEventListener('click', () => {
 // });
 
 document.getElementById('menu-button').addEventListener('click', () => {
-    location.reload();  // Recargar la página para volver al menú principal
+    window.location.href = window.location.href.split('#')[0];  // Redirigir a la misma URL base
 });
+
 
 function startGame() {
     score = 0; // Reiniciar el puntaje
