@@ -20,8 +20,8 @@ document.getElementById('start-button').addEventListener('click', () => {
 function startGame() {
     score = 0;
     gameOver = false;
-    player = new Player(); // Crear la nave del jugador
-    enemies = createEnemies(); // Crear enemigos
+    player = new Player();
+    enemies = createEnemies();
     requestAnimationFrame(gameLoop);
 }
 
@@ -29,7 +29,6 @@ function gameLoop() {
     if (gameOver) return endGame();
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
     player.update();
     player.draw();
 
@@ -38,9 +37,7 @@ function gameLoop() {
         enemy.draw();
     });
 
-    // Verifica colisiones, incrementa la puntuación, etc.
     checkCollisions();
-
     requestAnimationFrame(gameLoop);
 }
 
@@ -50,7 +47,6 @@ function endGame() {
     saveScore(playerName, score);
 }
 
-// Crear una clase para el jugador
 class Player {
     constructor() {
         this.width = 50;
@@ -76,15 +72,6 @@ class Player {
     }
 }
 
-// Crear enemigos de forma similar al jugador
-function createEnemies() {
-    let enemies = [];
-    for (let i = 0; i < 5; i++) {
-        enemies.push(new Enemy(i * 100 + 50, 50));
-    }
-    return enemies;
-}
-
 class Enemy {
     constructor(x, y) {
         this.width = 50;
@@ -99,6 +86,7 @@ class Enemy {
         this.y += this.speed;
         if (this.y > canvas.height) {
             this.y = -this.height;
+            this.x = Math.random() * (canvas.width - this.width);
         }
     }
 
@@ -108,23 +96,17 @@ class Enemy {
     }
 }
 
-// Manejo de las teclas presionadas
-let keys = {};
-window.addEventListener('keydown', function (e) {
-    keys[e.key] = true;
-});
-window.addEventListener('keyup', function (e) {
-    keys[e.key] = false;
-});
+function createEnemies() {
+    let enemies = [];
+    for (let i = 0; i < 5; i++) {
+        let x = i * 100 + 50;
+        let y = Math.random() * 100;
+        enemies.push(new Enemy(x, y));
+    }
+    return enemies;
+}
 
 function checkCollisions() {
     enemies.forEach(enemy => {
         if (player.x < enemy.x + enemy.width &&
-            player.x + player.width > enemy.x &&
-            player.y < enemy.y + enemy.height &&
-            player.height + player.y > enemy.y) {
-            gameOver = true;
-        }
-    });
-}
-
+            pla
