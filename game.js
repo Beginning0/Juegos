@@ -18,9 +18,11 @@ document.getElementById('start-button').addEventListener('click', () => {
 function startGame() {
     score = 0;
     gameOver = false;
-    // Lógica del juego aquí
+    ctx.fillStyle = 'white';
+    ctx.fillRect(100, 100, 50, 50); // Dibuja un cuadrado blanco en el canvas
     requestAnimationFrame(gameLoop);
 }
+
 
 function gameLoop() {
     if (gameOver) return endGame();
