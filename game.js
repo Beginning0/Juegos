@@ -6,36 +6,43 @@ canvas.height = 600;
 let playerName = '';
 let score = 0;
 let gameOver = false;
+let player;
+let enemies = [];
 
 document.getElementById('start-button').addEventListener('click', () => {
     playerName = document.getElementById('player-name').value;
     if (playerName) {
-        console.log("Player Name:", playerName); // Verifica que el nombre se captura
         document.getElementById('start-screen').style.display = 'none';
         startGame();
-    } else {
-        alert('Please enter a valid name!');
     }
 });
-
 
 function startGame() {
     score = 0;
     gameOver = false;
-    ctx.fillStyle = 'white';
-    ctx.fillRect(100, 100, 50, 50); // Dibuja un cuadrado blanco en el canvas
+    player = new Player(); // Crear la nave del jugador
+    enemies = createEnemies(); // Crear enemigos
     requestAnimationFrame(gameLoop);
 }
-
 
 function gameLoop() {
     if (gameOver) return endGame();
-    console.log("Game Loop Running"); // Verifica si el loop está funcionando
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Aquí debería ir el código para dibujar el juego
+    
+    player.update();
+    player.draw();
+
+    enemies.forEach(enemy => {
+        enemy.update();
+        enemy.draw();
+    });
+
+    // Verifica colisiones, incrementa la puntuación, etc.
+    checkCollisions();
+
     requestAnimationFrame(gameLoop);
 }
-
 
 function endGame() {
     document.getElementById('final-score').textContent = `Score: ${score}`;
@@ -43,9 +50,73 @@ function endGame() {
     saveScore(playerName, score);
 }
 
-document.getElementById('restart-button').addEventListener('click', () => {
-    document.getElementById('game-over-screen').style.display = 'none';
-    startGame();
+// Crear una clase para el jugador
+class Player {
+    constructor() {
+        this.width = 50;
+        this.height = 50;
+        this.x = canvas.width / 2 - this.width / 2;
+        this.y = canvas.height - this.height - 10;
+        this.speed = 5;
+        this.color = 'blue';
+    }
+
+    update() {
+        if (keys['ArrowLeft'] && this.x > 0) {
+            this.x -= this.speed;
+        }
+        if (keys['ArrowRight'] && this.x < canvas.width - this.width) {
+            this.x += this.speed;
+        }
+    }
+
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+}
+
+// Crear enemigos de forma similar al jugador
+function createEnemies() {
+    let enemies = [];
+    for (let i = 0; i < 5; i++) {
+        enemies.push(new Enemy(i * 100 + 50, 50));
+    }
+    return enemies;
+}
+
+class Enemy {
+    constructor(x, y) {
+        this.width = 50;
+        this.height = 50;
+        this.x = x;
+        this.y = y;
+        this.speed = 2;
+        this.color = 'red';
+    }
+
+    update() {
+        this.y += this.speed;
+        if (this.y > canvas.height) {
+            this.y = -this.height;
+        }
+    }
+
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+}
+
+// Manejo de las teclas presionadas
+let keys = {};
+window.addEventListener('keydown', function (e) {
+    keys[e.key] = true;
+});
+window.addEventListener('keyup', function (e) {
+    keys[e.key] = false;
 });
 
-// Aquí incluirás funciones para manejar el movimiento de la nave, disparos, enemigos, etc.
+function checkCollisions() {
+    // Aquí puedes implementar la lógica para verificar colisiones entre el jugador y los enemigos
+}
