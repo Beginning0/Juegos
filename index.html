@@ -22,18 +22,5 @@
     </div>
     <script src="game.js"></script>
     <script src="scores.js"></script>
-    <script>
-        document.getElementById('start-button').addEventListener('click', () => {
-    playerName = document.getElementById('player-name').value;
-    if (playerName) {
-        console.log("Player Name:", playerName); // Verifica que el nombre se captura
-        document.getElementById('start-screen').style.display = 'none';
-        startGame();
-    } else {
-        alert('Please enter a valid name!');
-    }
-});
-
-    </script>
 </body>
 </html>
