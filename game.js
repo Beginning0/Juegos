@@ -10,10 +10,14 @@ let gameOver = false;
 document.getElementById('start-button').addEventListener('click', () => {
     playerName = document.getElementById('player-name').value;
     if (playerName) {
+        console.log("Player Name:", playerName); // Verifica que el nombre se captura
         document.getElementById('start-screen').style.display = 'none';
         startGame();
+    } else {
+        alert('Please enter a valid name!');
     }
 });
+
 
 function startGame() {
     score = 0;
