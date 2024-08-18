@@ -26,11 +26,12 @@ function startGame() {
 
 function gameLoop() {
     if (gameOver) return endGame();
+    console.log("Game Loop Running"); // Verifica si el loop está funcionando
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Dibujar jugador, enemigos y manejar colisiones
-    // Aumentar puntuación, etc.
+    // Aquí debería ir el código para dibujar el juego
     requestAnimationFrame(gameLoop);
 }
+
 
 function endGame() {
     document.getElementById('final-score').textContent = `Score: ${score}`;
