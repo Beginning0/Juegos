@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+    max-width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+canvas {
+    border: 2px solid #000;
+    max-width: 100%;
+    height: auto;
+}
+
+#score {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+#playerName {
+    margin: 10px 0;
+    padding: 5px;
+}
+
+#startButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#gameHistory {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+    max-height: 200px;
+    overflow-y: auto;
+}
