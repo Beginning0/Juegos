@@ -22,7 +22,10 @@ Este es un clon básico del clásico juego de arcade **Galaga**, desarrollado ut
 
 Puedes jugar al juego en el siguiente enlace:
 
-[¡Juega ahora!](https://beginning0.github.io/Juegos/Juegos-Colisionador/)
+[¡Juega ahora Juegos-Colisionador!](https://beginning0.github.io/Juegos/Juegos-Colisionador/)
+[¡Juega ahora Juego-Serpiente!](https://beginning0.github.io/Juegos/Juego-Serpiente/)
+
+
 
 ## Instalación Local
 
